@@ -1,0 +1,25 @@
+{
+  "iso_codes": {
+    "name": "Debian iso-codes",
+    "version": "v4.20.1",
+    "url": "https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/{version}/data/iso_3166-1.json",
+    "tags_api": "https://salsa.debian.org/api/v4/projects/iso-codes-team%2Fiso-codes/repository/tags?per_page=1",
+    "homepage": "https://salsa.debian.org/iso-codes-team/iso-codes",
+    "license": "LGPL-2.1-or-later",
+    "license_url": "https://salsa.debian.org/iso-codes-team/iso-codes/-/blob/v4.20.1/LICENSES/LGPL-2.1-or-later.txt"
+  },
+  "world_bank": {
+    "name": "World Bank country metadata API",
+    "url": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+    "homepage": "https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries",
+    "license": "CC BY 4.0",
+    "license_url": "https://datacatalog.worldbank.org/public-licenses"
+  },
+  "eu": {
+    "name": "European Union, EU countries",
+    "url": "https://european-union.europa.eu/principles-countries-history/eu-countries_en",
+    "pages": 2,
+    "license": "CC BY 4.0 (europa.eu legal notice)",
+    "license_url": "https://european-union.europa.eu/legal-notice_en"
+  }
+}

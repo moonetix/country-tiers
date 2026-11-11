@@ -1,0 +1,25 @@
+{
+  "name": "country-tiers",
+  "version": "1.0.0",
+  "description": "Tier 1, 2 and 3 country lists for ad, affiliate and offerwall targeting, with ISO codes, World Bank income groups and EU/EEA flags.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./js/index.d.ts",
+      "default": "./js/index.js"
+    },
+    "./countries.json": "./data/countries.json"
+  },
+  "types": "./js/index.d.ts",
+  "files": ["js", "data"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "node --test"
+  },
+  "keywords": ["tier-1-countries", "geo-targeting", "iso-3166", "country-codes", "world-bank", "eu", "affiliate-marketing", "offerwall"],
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/moonetix/country-tiers.git" },
+  "homepage": "https://moonetix.com/academy/glossary/tier-1-2-3-countries"
+}

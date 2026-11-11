@@ -1,0 +1,51 @@
+name: Data correction
+description: Report a wrong tier, code, name, income group or EU/EEA flag for a country.
+title: "[data] "
+labels: ["data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ISO codes, income groups, regions and EU/EEA flags come from upstream sources and refresh weekly. If one of those is wrong here but correct upstream, the refresh job will fix it. If it is wrong upstream too, please report it to that source.
+
+        Tiers are an editorial convention. A tier change needs evidence that networks commonly place the country differently, not one network's list.
+  - type: input
+    id: country
+    attributes:
+      label: Country code
+      description: ISO 3166-1 alpha-2, for example BR.
+      placeholder: BR
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: What is wrong
+      options:
+        - Tier
+        - Alternate tiers
+        - ISO code or name
+        - Income group or region
+        - EU or EEA flag
+        - Missing country
+    validations:
+      required: true
+  - type: input
+    id: current
+    attributes:
+      label: Current value
+    validations:
+      required: true
+  - type: input
+    id: proposed
+    attributes:
+      label: Proposed value
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links to the official source, or for tiers, to two or more network or platform documents that use the placement you propose.
+    validations:
+      required: true

@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+type: dataset
+title: "Country tiers"
+abstract: >-
+  Tier 1, Tier 2 and Tier 3 country lists as used in advertising, affiliate
+  marketing and offerwalls, for every ISO 3166-1 code, with ISO alpha-2,
+  alpha-3 and numeric codes, World Bank income groups and regions, and EU and
+  EEA membership. Tiers are an industry convention, not an official
+  classification.
+authors:
+  - name: "Moonetix"
+    website: "https://moonetix.com"
+repository-code: "https://github.com/moonetix/country-tiers"
+url: "https://moonetix.com/academy/glossary/tier-1-2-3-countries"
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-11"
+references:
+  - type: data
+    title: "iso-codes"
+    authors:
+      - name: "Debian iso-codes team"
+    url: "https://salsa.debian.org/iso-codes-team/iso-codes"
+    version: "4.20.1"
+    license: LGPL-2.1-or-later
+  - type: data
+    title: "World Bank country and lending groups (World Bank API)"
+    authors:
+      - name: "The World Bank"
+    url: "https://api.worldbank.org/v2/country"
+    license: CC-BY-4.0
+keywords:
+  - country-tiers
+  - tier-1-countries
+  - geo-targeting
+  - iso-3166
+  - world-bank
+  - affiliate-marketing

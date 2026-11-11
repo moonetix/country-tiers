@@ -1,0 +1,54 @@
+name: Refresh official data
+
+on:
+  schedule:
+    - cron: '23 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild data from upstream sources
+        run: node scripts/build.mjs
+
+      - name: Show changes
+        run: git diff --stat -- data
+
+      # Pushes made with GITHUB_TOKEN do not trigger ci.yml, so the suites run here.
+      - name: Test
+        run: |
+          npm test
+          php php/test.php
+          python -m unittest discover -s python
+
+      - name: Commit if official data changed
+        run: |
+          if git diff --quiet -- data; then
+            echo "Upstream data unchanged."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data
+          git commit -m "Refresh official data ($(date -u +%Y-%m-%d))"
+          git push

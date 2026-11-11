@@ -1,0 +1,78 @@
+{
+  "updated": "2026-11-11",
+  "countries": 250,
+  "tier1": 20,
+  "tier2": 73,
+  "tier3": 157,
+  "sources": [
+    {
+      "name": "Debian iso-codes",
+      "version": "v4.20.1",
+      "url": "https://salsa.debian.org/iso-codes-team/iso-codes/-/raw/v4.20.1/data/iso_3166-1.json",
+      "license": "LGPL-2.1-or-later",
+      "license_url": "https://salsa.debian.org/iso-codes-team/iso-codes/-/blob/v4.20.1/LICENSES/LGPL-2.1-or-later.txt",
+      "fields": [
+        "iso2",
+        "iso3",
+        "numeric",
+        "name",
+        "common_name"
+      ]
+    },
+    {
+      "name": "World Bank country metadata API",
+      "url": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+      "license": "CC BY 4.0",
+      "license_url": "https://datacatalog.worldbank.org/public-licenses",
+      "fields": [
+        "income_group",
+        "income_code",
+        "region",
+        "region_code"
+      ]
+    },
+    {
+      "name": "European Union, EU countries",
+      "url": "https://european-union.europa.eu/principles-countries-history/eu-countries_en",
+      "license": "CC BY 4.0 (europa.eu legal notice)",
+      "license_url": "https://european-union.europa.eu/legal-notice_en",
+      "fields": [
+        "eu_member"
+      ]
+    },
+    {
+      "name": "Eurostat glossary, European Economic Area",
+      "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:European_Economic_Area_(EEA)",
+      "license": "CC BY 4.0 (europa.eu legal notice)",
+      "license_url": "https://european-union.europa.eu/legal-notice_en",
+      "fields": [
+        "eea_member"
+      ]
+    },
+    {
+      "name": "European Commission, outermost regions",
+      "url": "https://regions-and-cities.ec.europa.eu/policy/themes/outermost-regions",
+      "license": "CC BY 4.0 (europa.eu legal notice)",
+      "license_url": "https://european-union.europa.eu/legal-notice_en",
+      "fields": [
+        "eu_territory"
+      ]
+    },
+    {
+      "name": "Treaty on the Functioning of the European Union, Article 355(4)",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12016E355",
+      "fields": [
+        "eu_territory"
+      ]
+    },
+    {
+      "name": "Moonetix Academy, Tier 1, 2 and 3 countries",
+      "url": "https://moonetix.com/academy/glossary/tier-1-2-3-countries",
+      "fields": [
+        "tier",
+        "tier_basis",
+        "alt_tiers"
+      ]
+    }
+  ]
+}

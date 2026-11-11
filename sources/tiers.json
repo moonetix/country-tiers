@@ -1,0 +1,45 @@
+{
+  "reference": "https://moonetix.com/academy/glossary/tier-1-2-3-countries",
+  "rule": "Countries named in the reference article keep the tier it gives them. Other countries are placed with the article's own definitions: Iceland, Liechtenstein and Monaco join Tier 1 as rich Western European markets; other World Bank high-income economies join Tier 2; everything else, including territories the World Bank does not classify, is Tier 3.",
+  "tier1": {
+    "named": ["US", "CA", "GB", "AU", "NZ", "IE", "DE", "FR", "NL", "BE", "LU", "CH", "AT", "DK", "NO", "SE", "FI"],
+    "rule": ["IS", "LI", "MC"]
+  },
+  "tier2": {
+    "named": [
+      "ES", "IT", "PT", "PL", "CZ", "HU", "GR", "SK", "SI", "HR", "EE", "LV", "LT",
+      "IL", "JP", "KR", "SG", "HK", "TW", "AE", "SA", "QA", "CL", "UY",
+      "BR", "MX", "AR", "TR", "ZA"
+    ],
+    "rule": [
+      "AD", "AG", "AS", "AW", "BB", "BG", "BH", "BM", "BN", "BS", "CR", "CW", "CY", "FO", "GG",
+      "GI", "GL", "GU", "GY", "IM", "JE", "KN", "KW", "KY", "MF", "MO", "MP", "MT", "NC", "NR",
+      "OM", "PA", "PF", "PR", "PW", "RO", "RU", "SC", "SM", "SX", "TC", "TT", "VG", "VI"
+    ]
+  },
+  "tier3": {
+    "named": ["IN", "PK", "BD", "ID", "PH", "VN", "EG", "NG", "KE", "MA", "CO", "PE", "UA"]
+  },
+  "alternates": {
+    "AR": [3],
+    "BR": [3],
+    "MX": [3],
+    "TR": [3],
+    "ZA": [3],
+    "AE": [1],
+    "JP": [1],
+    "SG": [1]
+  },
+  "world_bank_aliases": {
+    "GG": "JG",
+    "JE": "JG"
+  },
+  "extra_codes": {
+    "XK": {
+      "iso3": "XKX",
+      "name": "Kosovo",
+      "common_name": "Kosovo",
+      "iso_status": "user-assigned"
+    }
+  }
+}

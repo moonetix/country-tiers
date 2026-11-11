@@ -1,0 +1,32 @@
+{
+  "eu_members": {
+    "source": "https://european-union.europa.eu/principles-countries-history/eu-countries_en",
+    "codes": [
+      "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+      "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE"
+    ],
+    "page_slugs": {
+      "austria": "AT", "belgium": "BE", "bulgaria": "BG", "croatia": "HR", "cyprus": "CY",
+      "czechia": "CZ", "denmark": "DK", "estonia": "EE", "finland": "FI", "france": "FR",
+      "germany": "DE", "greece": "GR", "hungary": "HU", "ireland": "IE", "italy": "IT",
+      "latvia": "LV", "lithuania": "LT", "luxembourg": "LU", "malta": "MT", "netherlands": "NL",
+      "poland": "PL", "portugal": "PT", "romania": "RO", "slovakia": "SK", "slovenia": "SI",
+      "spain": "ES", "sweden": "SE"
+    }
+  },
+  "eea_non_eu": {
+    "source": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:European_Economic_Area_(EEA)",
+    "codes": ["IS", "LI", "NO"]
+  },
+  "eu_territories": {
+    "note": "Areas with their own ISO 3166-1 code that are part of the EU through a member state.",
+    "outermost_regions": {
+      "source": "https://regions-and-cities.ec.europa.eu/policy/themes/outermost-regions",
+      "codes": ["GF", "GP", "MQ", "YT", "RE", "MF"]
+    },
+    "aland": {
+      "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12016E355",
+      "codes": ["AX"]
+    }
+  }
+}

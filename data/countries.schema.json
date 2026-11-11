@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/moonetix/country-tiers/main/data/countries.schema.json",
+  "title": "Country tiers",
+  "description": "One entry per ISO 3166-1 country code (plus XK for Kosovo) with its advertising tier, World Bank income group and region, and EU/EEA flags.",
+  "type": "array",
+  "minItems": 249,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "iso2", "iso3", "numeric", "name", "common_name", "iso_status",
+      "tier", "tier_basis", "alt_tiers",
+      "income_group", "income_code", "region", "region_code",
+      "eu_member", "eu_territory", "eea_member"
+    ],
+    "properties": {
+      "iso2": { "type": "string", "pattern": "^[A-Z]{2}$", "description": "ISO 3166-1 alpha-2 code. XK (Kosovo) is a user-assigned code, see iso_status." },
+      "iso3": { "type": "string", "pattern": "^[A-Z]{3}$", "description": "ISO 3166-1 alpha-3 code." },
+      "numeric": { "type": ["string", "null"], "pattern": "^[0-9]{3}$", "description": "ISO 3166-1 numeric code as a zero-padded string. Null for XK." },
+      "name": { "type": "string", "minLength": 1, "description": "English short name as published in Debian iso-codes." },
+      "common_name": { "type": "string", "minLength": 1, "description": "Common English name where iso-codes has one (South Korea, Vietnam), otherwise the short name." },
+      "iso_status": { "enum": ["official", "user-assigned"] },
+      "tier": { "enum": [1, 2, 3], "description": "Advertising tier. An industry convention, not an official classification." },
+      "tier_basis": { "enum": ["named", "rule"], "description": "named: listed in the reference article. rule: placed by the rule in sources/tiers.json." },
+      "alt_tiers": {
+        "type": "array",
+        "items": { "enum": [1, 2, 3] },
+        "uniqueItems": true,
+        "description": "Other tiers some networks commonly use for this country."
+      },
+      "income_group": { "enum": ["High income", "Upper middle income", "Lower middle income", "Low income", null], "description": "World Bank income group. Null when the World Bank does not classify the economy." },
+      "income_code": { "enum": ["HIC", "UMC", "LMC", "LIC", null] },
+      "region": { "type": ["string", "null"], "description": "World Bank region name." },
+      "region_code": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$", "description": "World Bank region id, for example ECS or SSF." },
+      "eu_member": { "type": "boolean", "description": "One of the 27 EU member states." },
+      "eu_territory": { "type": "boolean", "description": "EU member state, or an area with its own ISO code that is part of the EU through a member state (outermost regions, Åland)." },
+      "eea_member": { "type": "boolean", "description": "EU member state, Iceland, Liechtenstein or Norway." }
+    }
+  }
+}

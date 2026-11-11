@@ -1,0 +1,251 @@
+iso2,iso3,numeric,name,common_name,iso_status,tier,tier_basis,alt_tiers,income_group,income_code,region,region_code,eu_member,eu_territory,eea_member
+AD,AND,020,Andorra,Andorra,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+AE,ARE,784,United Arab Emirates,United Arab Emirates,official,2,named,1,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+AF,AFG,004,Afghanistan,Afghanistan,official,3,rule,,Low income,LIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+AG,ATG,028,Antigua and Barbuda,Antigua and Barbuda,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+AI,AIA,660,Anguilla,Anguilla,official,3,rule,,,,,,false,false,false
+AL,ALB,008,Albania,Albania,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+AM,ARM,051,Armenia,Armenia,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+AO,AGO,024,Angola,Angola,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+AQ,ATA,010,Antarctica,Antarctica,official,3,rule,,,,,,false,false,false
+AR,ARG,032,Argentina,Argentina,official,2,named,3,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+AS,ASM,016,American Samoa,American Samoa,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+AT,AUT,040,Austria,Austria,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+AU,AUS,036,Australia,Australia,official,1,named,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+AW,ABW,533,Aruba,Aruba,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+AX,ALA,248,Åland Islands,Åland Islands,official,3,rule,,,,,,false,true,false
+AZ,AZE,031,Azerbaijan,Azerbaijan,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+BA,BIH,070,Bosnia and Herzegovina,Bosnia and Herzegovina,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+BB,BRB,052,Barbados,Barbados,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+BD,BGD,050,Bangladesh,Bangladesh,official,3,named,,Lower middle income,LMC,South Asia,SAS,false,false,false
+BE,BEL,056,Belgium,Belgium,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+BF,BFA,854,Burkina Faso,Burkina Faso,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+BG,BGR,100,Bulgaria,Bulgaria,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+BH,BHR,048,Bahrain,Bahrain,official,2,rule,,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+BI,BDI,108,Burundi,Burundi,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+BJ,BEN,204,Benin,Benin,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+BL,BLM,652,Saint Barthélemy,Saint Barthélemy,official,3,rule,,,,,,false,false,false
+BM,BMU,060,Bermuda,Bermuda,official,2,rule,,High income,HIC,North America,NAC,false,false,false
+BN,BRN,096,Brunei Darussalam,Brunei Darussalam,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+BO,BOL,068,"Bolivia, Plurinational State of",Bolivia,official,3,rule,,Lower middle income,LMC,Latin America & Caribbean,LCN,false,false,false
+BQ,BES,535,"Bonaire, Sint Eustatius and Saba","Bonaire, Sint Eustatius and Saba",official,3,rule,,,,,,false,false,false
+BR,BRA,076,Brazil,Brazil,official,2,named,3,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+BS,BHS,044,Bahamas,Bahamas,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+BT,BTN,064,Bhutan,Bhutan,official,3,rule,,Lower middle income,LMC,South Asia,SAS,false,false,false
+BV,BVT,074,Bouvet Island,Bouvet Island,official,3,rule,,,,,,false,false,false
+BW,BWA,072,Botswana,Botswana,official,3,rule,,Upper middle income,UMC,Sub-Saharan Africa,SSF,false,false,false
+BY,BLR,112,Belarus,Belarus,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+BZ,BLZ,084,Belize,Belize,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+CA,CAN,124,Canada,Canada,official,1,named,,High income,HIC,North America,NAC,false,false,false
+CC,CCK,166,Cocos (Keeling) Islands,Cocos (Keeling) Islands,official,3,rule,,,,,,false,false,false
+CD,COD,180,"Congo, The Democratic Republic of the","Congo, The Democratic Republic of the",official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+CF,CAF,140,Central African Republic,Central African Republic,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+CG,COG,178,Congo,Congo,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+CH,CHE,756,Switzerland,Switzerland,official,1,named,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+CI,CIV,384,Côte d'Ivoire,Côte d'Ivoire,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+CK,COK,184,Cook Islands,Cook Islands,official,3,rule,,,,,,false,false,false
+CL,CHL,152,Chile,Chile,official,2,named,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+CM,CMR,120,Cameroon,Cameroon,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+CN,CHN,156,China,China,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+CO,COL,170,Colombia,Colombia,official,3,named,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+CR,CRI,188,Costa Rica,Costa Rica,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+CU,CUB,192,Cuba,Cuba,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+CV,CPV,132,Cabo Verde,Cabo Verde,official,3,rule,,Upper middle income,UMC,Sub-Saharan Africa,SSF,false,false,false
+CW,CUW,531,Curaçao,Curaçao,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+CX,CXR,162,Christmas Island,Christmas Island,official,3,rule,,,,,,false,false,false
+CY,CYP,196,Cyprus,Cyprus,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+CZ,CZE,203,Czechia,Czechia,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+DE,DEU,276,Germany,Germany,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+DJ,DJI,262,Djibouti,Djibouti,official,3,rule,,Lower middle income,LMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+DK,DNK,208,Denmark,Denmark,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+DM,DMA,212,Dominica,Dominica,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+DO,DOM,214,Dominican Republic,Dominican Republic,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+DZ,DZA,012,Algeria,Algeria,official,3,rule,,Upper middle income,UMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+EC,ECU,218,Ecuador,Ecuador,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+EE,EST,233,Estonia,Estonia,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+EG,EGY,818,Egypt,Egypt,official,3,named,,Lower middle income,LMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+EH,ESH,732,Western Sahara,Western Sahara,official,3,rule,,,,,,false,false,false
+ER,ERI,232,Eritrea,Eritrea,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+ES,ESP,724,Spain,Spain,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+ET,ETH,231,Ethiopia,Ethiopia,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+FI,FIN,246,Finland,Finland,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+FJ,FJI,242,Fiji,Fiji,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+FK,FLK,238,Falkland Islands (Malvinas),Falkland Islands (Malvinas),official,3,rule,,,,,,false,false,false
+FM,FSM,583,"Micronesia, Federated States of","Micronesia, Federated States of",official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+FO,FRO,234,Faroe Islands,Faroe Islands,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+FR,FRA,250,France,France,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+GA,GAB,266,Gabon,Gabon,official,3,rule,,Upper middle income,UMC,Sub-Saharan Africa,SSF,false,false,false
+GB,GBR,826,United Kingdom,United Kingdom,official,1,named,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+GD,GRD,308,Grenada,Grenada,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+GE,GEO,268,Georgia,Georgia,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+GF,GUF,254,French Guiana,French Guiana,official,3,rule,,,,,,false,true,false
+GG,GGY,831,Guernsey,Guernsey,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+GH,GHA,288,Ghana,Ghana,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+GI,GIB,292,Gibraltar,Gibraltar,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+GL,GRL,304,Greenland,Greenland,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+GM,GMB,270,Gambia,Gambia,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+GN,GIN,324,Guinea,Guinea,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+GP,GLP,312,Guadeloupe,Guadeloupe,official,3,rule,,,,,,false,true,false
+GQ,GNQ,226,Equatorial Guinea,Equatorial Guinea,official,3,rule,,Upper middle income,UMC,Sub-Saharan Africa,SSF,false,false,false
+GR,GRC,300,Greece,Greece,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+GS,SGS,239,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands,official,3,rule,,,,,,false,false,false
+GT,GTM,320,Guatemala,Guatemala,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+GU,GUM,316,Guam,Guam,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+GW,GNB,624,Guinea-Bissau,Guinea-Bissau,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+GY,GUY,328,Guyana,Guyana,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+HK,HKG,344,Hong Kong,Hong Kong,official,2,named,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+HM,HMD,334,Heard Island and McDonald Islands,Heard Island and McDonald Islands,official,3,rule,,,,,,false,false,false
+HN,HND,340,Honduras,Honduras,official,3,rule,,Lower middle income,LMC,Latin America & Caribbean,LCN,false,false,false
+HR,HRV,191,Croatia,Croatia,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+HT,HTI,332,Haiti,Haiti,official,3,rule,,Lower middle income,LMC,Latin America & Caribbean,LCN,false,false,false
+HU,HUN,348,Hungary,Hungary,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+ID,IDN,360,Indonesia,Indonesia,official,3,named,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+IE,IRL,372,Ireland,Ireland,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+IL,ISR,376,Israel,Israel,official,2,named,,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+IM,IMN,833,Isle of Man,Isle of Man,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+IN,IND,356,India,India,official,3,named,,Lower middle income,LMC,South Asia,SAS,false,false,false
+IO,IOT,086,British Indian Ocean Territory,British Indian Ocean Territory,official,3,rule,,,,,,false,false,false
+IQ,IRQ,368,Iraq,Iraq,official,3,rule,,Upper middle income,UMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+IR,IRN,364,"Iran, Islamic Republic of",Iran,official,3,rule,,Upper middle income,UMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+IS,ISL,352,Iceland,Iceland,official,1,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,true
+IT,ITA,380,Italy,Italy,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+JE,JEY,832,Jersey,Jersey,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+JM,JAM,388,Jamaica,Jamaica,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+JO,JOR,400,Jordan,Jordan,official,3,rule,,Upper middle income,UMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+JP,JPN,392,Japan,Japan,official,2,named,1,High income,HIC,East Asia & Pacific,EAS,false,false,false
+KE,KEN,404,Kenya,Kenya,official,3,named,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+KG,KGZ,417,Kyrgyzstan,Kyrgyzstan,official,3,rule,,Lower middle income,LMC,Europe & Central Asia,ECS,false,false,false
+KH,KHM,116,Cambodia,Cambodia,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+KI,KIR,296,Kiribati,Kiribati,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+KM,COM,174,Comoros,Comoros,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+KN,KNA,659,Saint Kitts and Nevis,Saint Kitts and Nevis,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+KP,PRK,408,"Korea, Democratic People's Republic of",North Korea,official,3,rule,,Low income,LIC,East Asia & Pacific,EAS,false,false,false
+KR,KOR,410,"Korea, Republic of",South Korea,official,2,named,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+KW,KWT,414,Kuwait,Kuwait,official,2,rule,,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+KY,CYM,136,Cayman Islands,Cayman Islands,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+KZ,KAZ,398,Kazakhstan,Kazakhstan,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+LA,LAO,418,Lao People's Democratic Republic,Laos,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+LB,LBN,422,Lebanon,Lebanon,official,3,rule,,Lower middle income,LMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+LC,LCA,662,Saint Lucia,Saint Lucia,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+LI,LIE,438,Liechtenstein,Liechtenstein,official,1,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,true
+LK,LKA,144,Sri Lanka,Sri Lanka,official,3,rule,,Upper middle income,UMC,South Asia,SAS,false,false,false
+LR,LBR,430,Liberia,Liberia,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+LS,LSO,426,Lesotho,Lesotho,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+LT,LTU,440,Lithuania,Lithuania,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+LU,LUX,442,Luxembourg,Luxembourg,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+LV,LVA,428,Latvia,Latvia,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+LY,LBY,434,Libya,Libya,official,3,rule,,Upper middle income,UMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+MA,MAR,504,Morocco,Morocco,official,3,named,,Lower middle income,LMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+MC,MCO,492,Monaco,Monaco,official,1,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+MD,MDA,498,"Moldova, Republic of",Moldova,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+ME,MNE,499,Montenegro,Montenegro,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+MF,MAF,663,Saint Martin (French part),Saint Martin (French part),official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,true,false
+MG,MDG,450,Madagascar,Madagascar,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+MH,MHL,584,Marshall Islands,Marshall Islands,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+MK,MKD,807,North Macedonia,North Macedonia,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+ML,MLI,466,Mali,Mali,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+MM,MMR,104,Myanmar,Myanmar,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+MN,MNG,496,Mongolia,Mongolia,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+MO,MAC,446,Macao,Macao,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+MP,MNP,580,Northern Mariana Islands,Northern Mariana Islands,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+MQ,MTQ,474,Martinique,Martinique,official,3,rule,,,,,,false,true,false
+MR,MRT,478,Mauritania,Mauritania,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+MS,MSR,500,Montserrat,Montserrat,official,3,rule,,,,,,false,false,false
+MT,MLT,470,Malta,Malta,official,2,rule,,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,true,true,true
+MU,MUS,480,Mauritius,Mauritius,official,3,rule,,Upper middle income,UMC,Sub-Saharan Africa,SSF,false,false,false
+MV,MDV,462,Maldives,Maldives,official,3,rule,,Upper middle income,UMC,South Asia,SAS,false,false,false
+MW,MWI,454,Malawi,Malawi,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+MX,MEX,484,Mexico,Mexico,official,2,named,3,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+MY,MYS,458,Malaysia,Malaysia,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+MZ,MOZ,508,Mozambique,Mozambique,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+NA,NAM,516,Namibia,Namibia,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+NC,NCL,540,New Caledonia,New Caledonia,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+NE,NER,562,Niger,Niger,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+NF,NFK,574,Norfolk Island,Norfolk Island,official,3,rule,,,,,,false,false,false
+NG,NGA,566,Nigeria,Nigeria,official,3,named,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+NI,NIC,558,Nicaragua,Nicaragua,official,3,rule,,Lower middle income,LMC,Latin America & Caribbean,LCN,false,false,false
+NL,NLD,528,Netherlands,Netherlands,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+NO,NOR,578,Norway,Norway,official,1,named,,High income,HIC,Europe & Central Asia,ECS,false,false,true
+NP,NPL,524,Nepal,Nepal,official,3,rule,,Lower middle income,LMC,South Asia,SAS,false,false,false
+NR,NRU,520,Nauru,Nauru,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+NU,NIU,570,Niue,Niue,official,3,rule,,,,,,false,false,false
+NZ,NZL,554,New Zealand,New Zealand,official,1,named,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+OM,OMN,512,Oman,Oman,official,2,rule,,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+PA,PAN,591,Panama,Panama,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+PE,PER,604,Peru,Peru,official,3,named,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+PF,PYF,258,French Polynesia,French Polynesia,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+PG,PNG,598,Papua New Guinea,Papua New Guinea,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+PH,PHL,608,Philippines,Philippines,official,3,named,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+PK,PAK,586,Pakistan,Pakistan,official,3,named,,Lower middle income,LMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+PL,POL,616,Poland,Poland,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+PM,SPM,666,Saint Pierre and Miquelon,Saint Pierre and Miquelon,official,3,rule,,,,,,false,false,false
+PN,PCN,612,Pitcairn,Pitcairn,official,3,rule,,,,,,false,false,false
+PR,PRI,630,Puerto Rico,Puerto Rico,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+PS,PSE,275,"Palestine, State of","Palestine, State of",official,3,rule,,Lower middle income,LMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+PT,PRT,620,Portugal,Portugal,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+PW,PLW,585,Palau,Palau,official,2,rule,,High income,HIC,East Asia & Pacific,EAS,false,false,false
+PY,PRY,600,Paraguay,Paraguay,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+QA,QAT,634,Qatar,Qatar,official,2,named,,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+RE,REU,638,Réunion,Réunion,official,3,rule,,,,,,false,true,false
+RO,ROU,642,Romania,Romania,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+RS,SRB,688,Serbia,Serbia,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+RU,RUS,643,Russian Federation,Russian Federation,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+RW,RWA,646,Rwanda,Rwanda,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+SA,SAU,682,Saudi Arabia,Saudi Arabia,official,2,named,,High income,HIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+SB,SLB,090,Solomon Islands,Solomon Islands,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+SC,SYC,690,Seychelles,Seychelles,official,2,rule,,High income,HIC,Sub-Saharan Africa,SSF,false,false,false
+SD,SDN,729,Sudan,Sudan,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+SE,SWE,752,Sweden,Sweden,official,1,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+SG,SGP,702,Singapore,Singapore,official,2,named,1,High income,HIC,East Asia & Pacific,EAS,false,false,false
+SH,SHN,654,"Saint Helena, Ascension and Tristan da Cunha","Saint Helena, Ascension and Tristan da Cunha",official,3,rule,,,,,,false,false,false
+SI,SVN,705,Slovenia,Slovenia,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+SJ,SJM,744,Svalbard and Jan Mayen,Svalbard and Jan Mayen,official,3,rule,,,,,,false,false,false
+SK,SVK,703,Slovakia,Slovakia,official,2,named,,High income,HIC,Europe & Central Asia,ECS,true,true,true
+SL,SLE,694,Sierra Leone,Sierra Leone,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+SM,SMR,674,San Marino,San Marino,official,2,rule,,High income,HIC,Europe & Central Asia,ECS,false,false,false
+SN,SEN,686,Senegal,Senegal,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+SO,SOM,706,Somalia,Somalia,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+SR,SUR,740,Suriname,Suriname,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+SS,SSD,728,South Sudan,South Sudan,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+ST,STP,678,Sao Tome and Principe,Sao Tome and Principe,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+SV,SLV,222,El Salvador,El Salvador,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+SX,SXM,534,Sint Maarten (Dutch part),Sint Maarten (Dutch part),official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+SY,SYR,760,Syrian Arab Republic,Syria,official,3,rule,,Low income,LIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+SZ,SWZ,748,Eswatini,Eswatini,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+TC,TCA,796,Turks and Caicos Islands,Turks and Caicos Islands,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+TD,TCD,148,Chad,Chad,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+TF,ATF,260,French Southern Territories,French Southern Territories,official,3,rule,,,,,,false,false,false
+TG,TGO,768,Togo,Togo,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+TH,THA,764,Thailand,Thailand,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+TJ,TJK,762,Tajikistan,Tajikistan,official,3,rule,,Lower middle income,LMC,Europe & Central Asia,ECS,false,false,false
+TK,TKL,772,Tokelau,Tokelau,official,3,rule,,,,,,false,false,false
+TL,TLS,626,Timor-Leste,Timor-Leste,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+TM,TKM,795,Turkmenistan,Turkmenistan,official,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+TN,TUN,788,Tunisia,Tunisia,official,3,rule,,Lower middle income,LMC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+TO,TON,776,Tonga,Tonga,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+TR,TUR,792,Türkiye,Türkiye,official,2,named,3,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+TT,TTO,780,Trinidad and Tobago,Trinidad and Tobago,official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+TV,TUV,798,Tuvalu,Tuvalu,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+TW,TWN,158,"Taiwan, Province of China",Taiwan,official,2,named,,,,,,false,false,false
+TZ,TZA,834,"Tanzania, United Republic of",Tanzania,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+UA,UKR,804,Ukraine,Ukraine,official,3,named,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+UG,UGA,800,Uganda,Uganda,official,3,rule,,Low income,LIC,Sub-Saharan Africa,SSF,false,false,false
+UM,UMI,581,United States Minor Outlying Islands,United States Minor Outlying Islands,official,3,rule,,,,,,false,false,false
+US,USA,840,United States,United States,official,1,named,,High income,HIC,North America,NAC,false,false,false
+UY,URY,858,Uruguay,Uruguay,official,2,named,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+UZ,UZB,860,Uzbekistan,Uzbekistan,official,3,rule,,Lower middle income,LMC,Europe & Central Asia,ECS,false,false,false
+VA,VAT,336,Holy See (Vatican City State),Holy See (Vatican City State),official,3,rule,,,,,,false,false,false
+VC,VCT,670,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,official,3,rule,,Upper middle income,UMC,Latin America & Caribbean,LCN,false,false,false
+VE,VEN,862,"Venezuela, Bolivarian Republic of",Venezuela,official,3,rule,,Lower middle income,LMC,Latin America & Caribbean,LCN,false,false,false
+VG,VGB,092,"Virgin Islands, British","Virgin Islands, British",official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+VI,VIR,850,"Virgin Islands, U.S.","Virgin Islands, U.S.",official,2,rule,,High income,HIC,Latin America & Caribbean,LCN,false,false,false
+VN,VNM,704,Viet Nam,Vietnam,official,3,named,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+VU,VUT,548,Vanuatu,Vanuatu,official,3,rule,,Lower middle income,LMC,East Asia & Pacific,EAS,false,false,false
+WF,WLF,876,Wallis and Futuna,Wallis and Futuna,official,3,rule,,,,,,false,false,false
+WS,WSM,882,Samoa,Samoa,official,3,rule,,Upper middle income,UMC,East Asia & Pacific,EAS,false,false,false
+XK,XKX,,Kosovo,Kosovo,user-assigned,3,rule,,Upper middle income,UMC,Europe & Central Asia,ECS,false,false,false
+YE,YEM,887,Yemen,Yemen,official,3,rule,,Low income,LIC,"Middle East, North Africa, Afghanistan & Pakistan",MEA,false,false,false
+YT,MYT,175,Mayotte,Mayotte,official,3,rule,,,,,,false,true,false
+ZA,ZAF,710,South Africa,South Africa,official,2,named,3,Upper middle income,UMC,Sub-Saharan Africa,SSF,false,false,false
+ZM,ZMB,894,Zambia,Zambia,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
+ZW,ZWE,716,Zimbabwe,Zimbabwe,official,3,rule,,Lower middle income,LMC,Sub-Saharan Africa,SSF,false,false,false
