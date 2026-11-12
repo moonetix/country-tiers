@@ -214,6 +214,6 @@ Calculators that take a per-country number once you have one: [CPI](https://moon
 
 ## About Moonetix
 
-[Moonetix](https://moonetix.com) is a pay-per-result affiliate network. Publishers add its offerwall to an app, game, website, bot or community, and users earn the publisher's own currency by completing offers that are available in their country. Related open data from the same team: [datacenter-ip-ranges](https://github.com/moonetix/datacenter-ip-ranges) and [awesome-app-monetization](https://github.com/moonetix/awesome-app-monetization).
+[Moonetix](https://moonetix.com) is an affiliate network. Publishers add its offerwall to an app, game, website, bot or community, and users earn the publisher's own currency by completing offers that are available in their country. Related open data from the same team: [datacenter-ip-ranges](https://github.com/moonetix/datacenter-ip-ranges) and [awesome-app-monetization](https://github.com/moonetix/awesome-app-monetization).
 
 Publisher accounts: [moonetix.com/register](https://moonetix.com/register).
