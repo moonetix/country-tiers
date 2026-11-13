@@ -1,4 +1,5 @@
-import { countries, lookup, countriesInTier, isEU, isEEA, incomeGroup, geoTargets } from './js/index.js';
+const lib = await import('./js/index.js').catch(() => null);
+const { countries, lookup, countriesInTier, isEU, isEEA, incomeGroup, geoTargets } = lib ?? {};
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, attrs = {}, ...kids) => {
@@ -25,6 +26,39 @@ const REGION_ORDER = [
 ];
 const REGION_LABEL = (r) => r ?? 'No World Bank region';
 const byName = (a, b) => a.common_name.localeCompare(b.common_name, 'en');
+const flagUrl = (r) => `flags/${r.iso2.toLowerCase()}.svg`;
+const flag = (r, width, height, cls) => el('img', {
+  class: cls,
+  loading: 'lazy',
+  decoding: 'async',
+  width: String(width),
+  height: String(height),
+  alt: '',
+  src: flagUrl(r),
+});
+const NEAR = 400;
+const nearView = 'IntersectionObserver' in window
+  ? new IntersectionObserver((entries) => {
+    for (const entry of entries) if (entry.isIntersecting) showFlag(entry.target);
+  }, { rootMargin: `${NEAR}px 0px` })
+  : null;
+function showFlag(img) {
+  img.src = img.dataset.src;
+  nearView?.unobserve(img);
+}
+function tileFlag(r) {
+  const img = el('img', { loading: 'lazy', decoding: 'async', width: '24', height: '18', alt: '' });
+  img.dataset.src = flagUrl(r);
+  return img;
+}
+function startTileFlags() {
+  for (const img of document.querySelectorAll('#map img')) {
+    const box = img.getBoundingClientRect();
+    const near = box.width > 0 && box.top < window.innerHeight + NEAR && box.bottom > -NEAR;
+    if (near || !nearView) showFlag(img);
+    else nearView.observe(img);
+  }
+}
 
 const state = { q: '', tier: '', income: '', group: '', view: 'map', selected: 'US', sortKey: 'tier', sortDir: 1 };
 
@@ -97,8 +131,8 @@ function renderMap() {
           'aria-label': `${r.common_name}, ${tierWord(r)}`,
           tabindex: '-1',
         },
-        el('b', { text: r.iso2 }),
-        el('span', { text: String(r.tier), 'aria-hidden': 'true' })),
+        tileFlag(r),
+        el('span', { class: 'tl' }, el('b', { text: r.iso2 }), el('span', { class: 'tn', text: String(r.tier) }))),
       );
     }
     block.append(grid);
@@ -185,8 +219,13 @@ function renderDetail() {
   const dl = el('dl');
   for (const [k, v] of rows) dl.append(el('dt', { text: k }), el('dd', { text: v }));
   box.append(
-    el('p', { class: 'muted small eyebrow', text: 'Selected country' }),
-    el('h2', { text: r.common_name }),
+    el('div', { class: 'detail-head' },
+      flag(r, 64, 48, 'flag'),
+      el('div', {},
+        el('p', { class: 'detail-label', text: 'Selected country' }),
+        el('h3', { text: r.common_name }),
+      ),
+    ),
     r.name !== r.common_name ? el('p', { class: 'muted small', text: r.name }) : '',
     el('p', {}, el('span', { class: `badge t${r.tier}`, text: tierWord(r) }),
       r.iso_status === 'user-assigned' ? el('span', { class: 'muted small', text: ' User-assigned code' }) : ''),
@@ -214,7 +253,7 @@ function renderTable(rows) {
     const name = el('button', { type: 'button', class: 'link', 'data-iso2': r.iso2, text: r.common_name });
     frag.append(
       el('tr', { class: r.iso2 === state.selected ? 'sel' : null },
-        el('td', {}, name),
+        el('td', {}, el('span', { class: 'cname' }, flag(r, 20, 15, 'flag'), name)),
         el('td', { class: 'mono', text: r.iso2 }),
         el('td', { class: 'mono', text: r.iso3 }),
         el('td', { class: 'mono', text: r.numeric ?? '-' }),
@@ -224,6 +263,9 @@ function renderTable(rows) {
         el('td', { text: yesNo(r.eea_member) }),
       ),
     );
+  }
+  if (!sorted.length) {
+    frag.append(el('tr', {}, el('td', { colspan: '8', class: 'muted', text: 'No country matches these filters.' })));
   }
   tbody.append(frag);
   for (const th of document.querySelectorAll('#table th')) {
@@ -240,8 +282,18 @@ function update() {
     state.selected = rows[0].iso2;
     renderDetail();
   }
+  $('#empty').hidden = rows.length > 0;
   updateMap();
   if (state.view === 'table') renderTable(rows);
+}
+
+function resetFilters() {
+  for (const id of ['q', 'tier', 'income', 'group']) {
+    $(`#${id}`).value = '';
+    state[id] = '';
+  }
+  update();
+  $('#q').focus();
 }
 
 function select(iso2, fromClick) {
@@ -275,7 +327,6 @@ function runBuilder() {
   const out = document.querySelector('input[name="out"]:checked').value;
   const output = $('#output');
   const count = $('#out-count');
-  $('#copy-status').textContent = '';
   if (!tiers.length) {
     output.value = '';
     count.textContent = '(pick at least one tier)';
@@ -299,22 +350,6 @@ function runBuilder() {
     count.textContent = '(error)';
     $('#copy').disabled = true;
   }
-}
-
-async function copyOutput() {
-  const text = $('#output').value;
-  const status = $('#copy-status');
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch {
-    const ta = $('#output');
-    ta.select();
-    if (!document.execCommand('copy')) {
-      status.textContent = 'Copy failed. Select the text and copy it manually.';
-      return;
-    }
-  }
-  status.textContent = 'Copied.';
 }
 
 async function renderSources() {
@@ -368,7 +403,7 @@ function init() {
   });
   $('#builder').addEventListener('input', runBuilder);
   $('#builder').addEventListener('change', runBuilder);
-  $('#copy').addEventListener('click', copyOutput);
+  $('#reset').addEventListener('click', resetFilters);
   window.addEventListener('hashchange', () => {
     parseHash();
     renderDetail();
@@ -376,7 +411,14 @@ function init() {
   });
   update();
   runBuilder();
-  renderSources();
+  startTileFlags();
 }
 
-init();
+if (lib) {
+  init();
+} else {
+  $('#load-error').hidden = false;
+  $('#explorer').hidden = true;
+  $('#build').hidden = true;
+}
+renderSources();

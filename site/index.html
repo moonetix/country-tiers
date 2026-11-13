@@ -5,11 +5,12 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>country-tiers - Tier 1, 2 and 3 countries as data</title>
-<meta name="description" content="Browse Tier 1, 2 and 3 countries with ISO codes, World Bank income groups and EU/EEA flags. Search, filter and copy a geo-target list as JSON or CSV.">
+<meta name="description" content="Browse Tier 1, 2 and 3 countries with flags, ISO codes, World Bank income groups and EU and EEA membership. Search, filter and copy a geo-target list as JSON or CSV.">
 <script src="theme.js"></script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="base.css">
 <link rel="stylesheet" href="style.css">
+<script type="module" src="ui.js"></script>
 <script type="module" src="app.js"></script>
 </head>
 <body>
@@ -30,13 +31,49 @@
     <svg class="orbit" viewBox="0 0 320 320" aria-hidden="true" focusable="false"><circle cx="160" cy="160" r="60" fill="none" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.5"/><circle cx="160" cy="160" r="104" fill="none" stroke="currentColor" stroke-opacity="0.22" stroke-width="1.5"/><circle cx="160" cy="160" r="148" fill="none" stroke="currentColor" stroke-opacity="0.13" stroke-width="1.5"/><circle cx="248.2" cy="104.9" r="6" fill="currentColor"/><circle cx="27.0" cy="95.1" r="5" fill="currentColor"/><circle cx="121.4" cy="206.0" r="4" fill="currentColor"/><circle cx="224.9" cy="293.0" r="4" fill="currentColor"/><path fill="currentColor" fill-rule="evenodd" transform="translate(122.00 122.00) scale(0.1484)" d="M336.3 95.9C319.1 98.4,297.6 107.1,285 116.7C276.3 123.3,265.6 134.8,259.4 144C255.6 149.7,231 197.7,231 199.4C231 199.6,223.9 214,215.3 231.6C194.9 273.3,194.8 273.6,199.2 281.3C204.4 290.3,217 291.4,222.7 283.3C224.9 280.1,260.6 209.7,271.7 186.5C283.1 162.7,300.2 141.3,312.4 135.5C331 126.7,352.7 128.5,376.3 140.8C399.9 153.1,416.7 174.9,423.5 202C425.8 211.1,426.1 236,424.1 245.5C417.7 274.3,403.7 297.7,382.2 315.2C361.3 332.4,337.8 339.6,311.6 337C305.6 336.4,300.5 336.1,300.3 336.3C300 336.6,304 337.8,309.1 339.1L318.5 341.4 337 341.4C357.4 341.5,363.6 340.6,379.5 335.4C426.4 320.2,461.3 281.1,469.5 234.9C471.4 223.8,471.4 201.5,469.4 191C460.9 146.3,422.9 108.4,376 97.9C366.2 95.7,345.4 94.6,336.3 95.9M156 170.4C124.8 175,100.2 187.4,78.4 209.3C55.7 232.1,43.7 257.6,41 288.2C35.9 345.5,73.4 396.9,131.8 412.6C143.6 415.8,166.5 416.9,178.8 415C203.2 411.1,228.2 397.3,243.4 379.3C254.5 366.3,258.1 359.6,290.9 290.5C293 286.1,297.3 277.1,300.4 270.5C303.6 263.9,307.7 255.1,309.7 251C315.9 237.7,315.1 228.7,307.2 223.8C302.5 220.9,293.9 221.5,290.5 225C288 227.6,258.4 286.1,243.9 317.2C233.2 340.2,224.5 353.5,212.5 365.5C199.7 378.3,190.5 381.7,170.5 380.6C132.2 378.7,98.4 349.6,88.4 310C86.9 304.1,86.5 298.9,86.5 286.5L86.5 270.5 89.3 259.6C99.4 220.6,126.8 189.8,161.5 178.1C173.1 174.2,192.4 172.8,206.7 174.8C213.9 175.9,212 174.6,203.5 172.6C187 168.8,171.6 168.1,156 170.4"/></svg>
     <p class="eyebrow">Live demo, open source</p>
     <h1>Tier 1, 2 and 3 countries as data</h1>
-    <p>Every ISO 3166-1 country plus Kosovo, with its advertising tier, ISO codes, World Bank income group and EU/EEA flags. Search and filter below, then copy a geo-target list as JSON or CSV. The page runs the repo's own JavaScript helpers on the same data files it ships.</p>
+    <p>Every ISO 3166-1 country plus Kosovo, with its advertising tier, ISO codes, World Bank income group and EU and EEA membership. Search and filter below, then copy a geo-target list as JSON or CSV. The page runs the repo's own JavaScript helpers on the same data files it ships.</p>
     <ul class="stats" id="stats" aria-label="Dataset summary"></ul>
+    <div class="hero-actions">
+      <a class="btn" href="#use"><svg class="bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg>Use it in your project</a>
+      <a class="btn" href="https://moonetix.com/academy/glossary/tier-1-2-3-countries?from=github-pages-country-tiers"><svg class="bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 6c-2-1.5-4.5-2-8-2v14c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2V4c-3.5 0-6 .5-8 2zM12 6v14"/></svg>Read the guide</a>
+    </div>
    </div>
   </section>
 
-  <section class="wrap" aria-labelledby="explore-h">
-    <h2 id="explore-h" class="sr-only">Explore the countries</h2>
+  <section class="wrap section first" aria-labelledby="uses-h">
+    <div class="sec-head">
+      <h2 id="uses-h">What it is for</h2>
+      <p class="lead">Three jobs a rewards app, site, game or community can hand to this dataset.</p>
+    </div>
+    <ul class="uses">
+      <li class="card use">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 20h18M7 20v-6M12 20V6M17 20v-9"/></svg></span>Explain earnings by country</h3>
+        <p>Look up the tier of each user's country with <code>tierOf()</code> and compare earnings per user between Tier 1, 2 and 3 markets.</p>
+      </li>
+      <li class="card use">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>Build geo-target lists</h3>
+        <p><code>geoTargets()</code> turns one or more tiers into a sorted list of ISO codes, ready to paste into a campaign or an offer's country field.</p>
+      </li>
+      <li class="card use">
+        <h3><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>Handle EU consent by country</h3>
+        <p>The EU, EU territory and EEA fields tell you whether a GeoIP country code falls under EU rules, including areas such as Réunion and Åland.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="wrap section" id="explore" aria-labelledby="explore-h">
+    <div class="sec-head">
+      <h2 id="explore-h">Explore the countries</h2>
+      <p class="lead">Search or filter, then select a country to see its codes, tier and groups.</p>
+    </div>
+    <div class="notice bad" id="load-error" role="alert" hidden>
+      <svg class="ni" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.5"/></svg>
+      <div>
+        <strong>The country data did not load.</strong>
+        <span>Reload the page to try again. The files are also in the <a href="https://github.com/moonetix/country-tiers/tree/main/data">data folder of the repo</a>.</span>
+      </div>
+    </div>
+    <div id="explorer">
     <form class="card filters" id="filters" role="search">
       <div class="field grow">
         <label for="q">Search by name or ISO code</label>
@@ -75,11 +112,20 @@
     </form>
 
     <div class="bar">
-      <p id="count" class="muted" aria-live="polite"></p>
+      <p id="count" class="muted" aria-live="polite">Loading the countries.</p>
       <div class="views" role="group" aria-label="View">
         <button type="button" class="btn" id="view-map" aria-pressed="true">Map</button>
         <button type="button" class="btn" id="view-table" aria-pressed="false">Table</button>
       </div>
+    </div>
+
+    <div class="notice" id="empty" hidden>
+      <svg class="ni" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+      <div>
+        <strong>No country matches these filters.</strong>
+        <span>Try a shorter search or remove a filter.</span>
+      </div>
+      <button type="button" class="btn" id="reset">Reset filters</button>
     </div>
 
     <div class="explore">
@@ -91,7 +137,7 @@
           <span><i class="sw t3"></i>Tier 3</span>
           <span><i class="sw off"></i>Filtered out</span>
         </div>
-        <p class="muted small">Tiles are grouped by World Bank region and sorted by tier. Use the arrow keys to move between countries.</p>
+        <p class="muted small">Tiles are grouped by World Bank region and sorted by tier. The digit on each tile is its tier. Use the arrow keys to move between countries.</p>
         <div id="map"></div>
       </div>
       <div class="card table-view" id="table-view" hidden>
@@ -115,12 +161,15 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
-  <section class="wrap section" aria-labelledby="build-h">
-    <div class="card">
+  <section class="wrap section" id="build" aria-labelledby="build-h">
+    <div class="sec-head">
       <h2 id="build-h">Copy a geo-target list</h2>
-      <p class="muted">Built with <code>geoTargets()</code> from <code>js/index.js</code>. Unknown codes in Include or Exclude are rejected, the same as in the library.</p>
+      <p class="lead">Built with <code>geoTargets()</code> from <code>js/index.js</code>. Unknown codes in Include or Exclude are rejected, the same as in the library.</p>
+    </div>
+    <div class="card">
       <form id="builder" class="builder">
         <fieldset>
           <legend>Tiers</legend>
@@ -156,32 +205,145 @@
           <textarea id="output" rows="4" readonly></textarea>
         </div>
         <div class="full actions">
-          <button type="button" class="btn primary" id="copy">Copy</button>
-          <span id="copy-status" class="muted" role="status"></span>
+          <button type="button" class="btn primary copy-btn" id="copy" data-copy="#output" aria-label="Copy the geo-target list">Copy</button>
         </div>
       </form>
     </div>
   </section>
 
-  <section class="wrap section two" aria-label="Data files and sources">
-    <div class="card">
-      <h2>Download the data</h2>
-      <ul class="files">
-        <li><a href="data/countries.json" download>countries.json</a> <span class="muted">One object per country, all fields.</span></li>
-        <li><a href="data/countries.csv" download>countries.csv</a> <span class="muted">The same as CSV, UTF-8.</span></li>
-        <li><a href="data/tier1.txt" download>tier1.txt</a>, <a href="data/tier2.txt" download>tier2.txt</a>, <a href="data/tier3.txt" download>tier3.txt</a> <span class="muted">ISO alpha-2 codes, one per line.</span></li>
-        <li><a href="data/countries.schema.json" download>countries.schema.json</a> <span class="muted">JSON Schema for countries.json.</span></li>
-        <li><a href="data/sources.json" download>sources.json</a> <span class="muted">Source versions, licenses and the last update date.</span></li>
-      </ul>
-      <p class="muted small">Tiers are an industry convention, not an official standard. Networks draw the lines a little differently, which is why contested placements are marked.</p>
+  <section class="wrap section" id="use" aria-labelledby="use-h">
+    <div class="sec-head">
+      <h2 id="use-h">Use it in your project</h2>
+      <p class="lead">The helpers read <code>data/countries.json</code>, have no dependencies and return the same results in JavaScript, PHP and Python.</p>
     </div>
-    <div class="card">
-      <h2>Sources</h2>
-      <p class="muted" id="updated"></p>
-      <ul class="sources" id="sources"></ul>
+    <div class="card usage">
+      <div class="tabs" role="tablist" aria-label="Language">
+        <button type="button" role="tab" id="tab-js" aria-controls="panel-js" aria-selected="true">JavaScript</button>
+        <button type="button" role="tab" id="tab-php" aria-controls="panel-php" aria-selected="false" tabindex="-1">PHP</button>
+        <button type="button" role="tab" id="tab-py" aria-controls="panel-py" aria-selected="false" tabindex="-1">Python</button>
+        <button type="button" role="tab" id="tab-sh" aria-controls="panel-sh" aria-selected="false" tabindex="-1">curl</button>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-js" aria-labelledby="tab-js">
+        <div class="code">
+          <div class="code-bar"><span>Install (Node 22+)</span><button type="button" class="copy" data-copy aria-label="Copy the JavaScript install command">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="js-install">npm install github:moonetix/country-tiers</code></pre>
+        </div>
+        <div class="code">
+          <div class="code-bar"><span>Use</span><button type="button" class="copy" data-copy aria-label="Copy the JavaScript example">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="js-use">import { tierOf, isEU, incomeGroup, geoTargets } from 'country-tiers';
+
+tierOf('US');                       <span class="c">// 1</span>
+isEU('GP', { territories: true });  <span class="c">// true</span>
+incomeGroup('IN');                  <span class="c">// 'Lower middle income'</span>
+
+geoTargets(1, { exclude: ['LI', 'MC'], include: ['JP'] });
+geoTargets([1, 2], { alternates: true, format: 'iso3' });</code></pre>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-php" aria-labelledby="tab-php" hidden>
+        <div class="code">
+          <div class="code-bar"><span>Get it (PHP 8.1+)</span><button type="button" class="copy" data-copy aria-label="Copy the command that fetches the PHP helper">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="php-install">git clone --depth 1 https://github.com/moonetix/country-tiers.git</code></pre>
+        </div>
+        <div class="code">
+          <div class="code-bar"><span>Use</span><button type="button" class="copy" data-copy aria-label="Copy the PHP example">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="php-use">&lt;?php
+require 'country-tiers/php/CountryTiers.php';
+
+use CountryTiers\Tiers;
+
+Tiers::tierOf('US');        <span class="c">// 1</span>
+Tiers::isEU('DE');          <span class="c">// true</span>
+Tiers::incomeGroup('IN');   <span class="c">// 'Lower middle income'</span>
+Tiers::geoTargets(1, ['exclude' =&gt; ['LI', 'MC'], 'include' =&gt; ['JP']]);</code></pre>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-py" aria-labelledby="tab-py" hidden>
+        <div class="code">
+          <div class="code-bar"><span>Get it (Python 3.8+)</span><button type="button" class="copy" data-copy aria-label="Copy the command that fetches the Python helper">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="py-install">git clone --depth 1 https://github.com/moonetix/country-tiers.git</code></pre>
+        </div>
+        <div class="code">
+          <div class="code-bar"><span>Use</span><button type="button" class="copy" data-copy aria-label="Copy the Python example">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="py-use">import sys
+sys.path.insert(0, "country-tiers/python")
+import country_tiers as ct
+
+ct.tier_of("US")          <span class="c"># 1</span>
+ct.is_eu("DE")            <span class="c"># True</span>
+ct.income_group("IN")     <span class="c"># 'Lower middle income'</span>
+ct.geo_targets(1, exclude=["LI", "MC"], include=["JP"])</code></pre>
+        </div>
+      </div>
+      <div class="tabpanel" role="tabpanel" id="panel-sh" aria-labelledby="tab-sh" hidden>
+        <div class="code">
+          <div class="code-bar"><span>Tier 1 as a comma-separated list, no install</span><button type="button" class="copy" data-copy aria-label="Copy the curl command for the Tier 1 list">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="sh-list">curl -s https://raw.githubusercontent.com/moonetix/country-tiers/main/data/tier1.txt | paste -sd, -
+<span class="c"># AT,AU,BE,CA,CH,DE,DK,FI,FR,GB,IE,IS,LI,LU,MC,NL,NO,NZ,SE,US</span></code></pre>
+        </div>
+        <div class="code">
+          <div class="code-bar"><span>Filter the full file with jq</span><button type="button" class="copy" data-copy aria-label="Copy the jq example">Copy</button></div>
+          <pre tabindex="0"><code data-snippet="sh-jq">curl -sO https://raw.githubusercontent.com/moonetix/country-tiers/main/data/countries.json
+jq -r '[.[] | select(.tier == 1 and .eu_member) | .iso2] | join(",")' countries.json
+<span class="c"># AT,BE,DE,DK,FI,FR,IE,LU,NL,SE</span></code></pre>
+        </div>
+      </div>
+      <p class="muted small usage-foot"><code>tierOf()</code> and <code>incomeGroup()</code> return <code>null</code> (<code>None</code> in Python) for a code that does not exist, and <code>geoTargets()</code> throws on one, so a typo never stays in a geo-target unnoticed. The <a href="https://github.com/moonetix/country-tiers#use-it-from-code">README</a> lists every helper and option.</p>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="data-h">
+    <div class="sec-head">
+      <h2 id="data-h">Data and sources</h2>
+      <p class="lead">Plain files you can download, and where each field comes from.</p>
+    </div>
+    <div class="two">
+      <div class="card">
+        <h3 class="card-h"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span>Download the data</h3>
+        <ul class="files">
+          <li><a href="data/countries.json" download>countries.json</a> <span class="muted">One object per country, all fields.</span></li>
+          <li><a href="data/countries.csv" download>countries.csv</a> <span class="muted">The same as CSV, UTF-8.</span></li>
+          <li><a href="data/tier1.txt" download>tier1.txt</a>, <a href="data/tier2.txt" download>tier2.txt</a>, <a href="data/tier3.txt" download>tier3.txt</a> <span class="muted">ISO alpha-2 codes, one per line.</span></li>
+          <li><a href="data/countries.schema.json" download>countries.schema.json</a> <span class="muted">JSON Schema for countries.json.</span></li>
+          <li><a href="data/sources.json" download>sources.json</a> <span class="muted">Source versions, licenses and the last update date.</span></li>
+        </ul>
+        <p class="muted small">Tiers are an industry convention, not an official standard. Networks draw the lines a little differently, which is why contested placements are marked.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-h"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg></span>Sources</h3>
+        <p class="muted" id="updated"></p>
+        <ul class="sources" id="sources"></ul>
+        <p class="muted small">Flag images on this page: <a href="https://github.com/lipis/flag-icons">flag-icons</a> (<a href="flags/LICENSE.txt">MIT license</a>). They are fetched when the page is built and are not part of the dataset.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="guide-h">
+    <div class="card guide">
+      <div class="guide-text">
+        <p class="kicker">Moonetix Academy</p>
+        <h2 id="guide-h">Tier 1, 2 and 3 Countries: The Full 2026 List</h2>
+        <p>The guide behind this data: what the tiers mean, how ad prices and audiences differ by tier, and how to set a bid for each country.</p>
+      </div>
+      <a class="btn" href="https://moonetix.com/academy/glossary/tier-1-2-3-countries?from=github-pages-country-tiers"><svg class="bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 6c-2-1.5-4.5-2-8-2v14c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2V4c-3.5 0-6 .5-8 2zM12 6v14"/></svg>Read the guide</a>
+    </div>
+  </section>
+
+  <section class="wrap section tight" aria-labelledby="about-h">
+    <div class="band">
+      <div class="band-text">
+        <h2 id="about-h">Made by Moonetix</h2>
+        <p>Moonetix is an affiliate network for publishers: you add its offerwall to an app, game, website, bot or community, and your users earn your own currency by completing offers available in their country.</p>
+      </div>
+      <div class="band-actions">
+        <a class="btn" href="https://github.com/moonetix/country-tiers"><svg class="bi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>Star on GitHub</a>
+        <a class="btn primary" href="https://moonetix.com/register?from=github-pages-country-tiers">Sign up free</a>
+      </div>
     </div>
   </section>
 </main>
+
+<p class="sr-only" id="copy-live" role="status" aria-live="polite"></p>
 
 <footer class="foot">
   <div class="wrap">
