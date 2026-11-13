@@ -8,10 +8,16 @@
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Data: see sources](https://img.shields.io/badge/data-CC%20BY%204.0%20%7C%20LGPL--2.1-6e7781.svg)](data/SOURCES.md)
 [![Reference](https://img.shields.io/badge/reference-tier%201%2C%202%20and%203%20countries-0b7a75.svg)](https://moonetix.com/academy/glossary/tier-1-2-3-countries)
+[![Live demo](https://img.shields.io/badge/live%20demo-moonetix.github.io-0e7a48.svg)](https://moonetix.github.io/country-tiers/)
 
 Maintained by [Moonetix](https://moonetix.com).
 
 Every insertion order, offer page and offerwall dashboard says "Tier 1" sooner or later, and everyone keeps a slightly different copy of the list in a spreadsheet. This repo is that list as data: one row for each of the 249 ISO 3166-1 codes plus Kosovo, a tier for each, and the objective fields you usually have to join by hand. JSON, CSV and plain ISO lists, plus small helpers in JavaScript, PHP and Python that behave identically.
+
+```sh
+curl -s https://raw.githubusercontent.com/moonetix/country-tiers/main/data/tier1.txt | paste -sd, -
+# AT,AU,BE,CA,CH,DE,DK,FI,FR,GB,IE,IS,LI,LU,MC,NL,NO,NZ,SE,US
+```
 
 > [!IMPORTANT]
 > Tiers are an industry convention, not an official standard. Ad networks, affiliate networks and offerwalls each draw the lines a little differently and move them as markets change. This repo follows one published definition, marks the countries networks disagree on, and keeps the official fields (ISO, World Bank, EU) separate from the editorial one (tier).
@@ -24,18 +30,18 @@ Every insertion order, offer page and offerwall dashboard says "Tier 1" sooner o
 | **Tier 2** | 73 | ES, IT, PT, PL, CZ, HU, GR, SK, SI, HR, EE, LV, LT, IL, JP, KR, SG, HK, TW, AE, SA, QA, CL, UY, BR, MX, AR, TR, ZA | 44 other World Bank high-income economies, from Bulgaria, Cyprus, Kuwait, Oman and Romania to Puerto Rico and Jersey |
 | **Tier 3** | 157 | IN, PK, BD, ID, PH, VN, EG, NG, KE, MA, CO, PE, UA | Everything else, including China, Malaysia, Thailand and most of Africa, Central Asia and Latin America |
 
-Full lists: [tier1.txt](data/tier1.txt), [tier2.txt](data/tier2.txt), [tier3.txt](data/tier3.txt).
+Full lists: [tier1.txt](data/tier1.txt), [tier2.txt](data/tier2.txt), [tier3.txt](data/tier3.txt). To browse them by region, search by name or code and copy a geo-target list, open the [live demo](https://moonetix.github.io/country-tiers/).
 
 **Contested placements** are in `alt_tiers`. Brazil, Mexico, Argentina, Türkiye and South Africa are Tier 2 here and Tier 3 on many networks. Japan, Singapore and the United Arab Emirates are Tier 2 here and Tier 1 on some. Many short lists keep Tier 1 to the US, Canada, the UK and Australia only.
 
 ## Get the data
 
-No install needed. Pull a file straight from GitHub:
+No install needed. Pull a file straight from GitHub and filter it with `jq`:
 
 ```sh
 curl -sO https://raw.githubusercontent.com/moonetix/country-tiers/main/data/countries.json
-curl -s https://raw.githubusercontent.com/moonetix/country-tiers/main/data/tier1.txt | paste -sd, -
-# AT,AU,BE,CA,CH,DE,DK,FI,FR,GB,IE,IS,LI,LU,MC,NL,NO,NZ,SE,US
+jq -r '[.[] | select(.tier == 1 and .eu_member) | .iso2] | join(",")' countries.json
+# AT,BE,DE,DK,FI,FR,IE,LU,NL,SE
 ```
 
 | File | What it is |
@@ -105,7 +111,7 @@ Tiers::geoTargets(1, ['exclude' => ['LI', 'MC'], 'include' => ['JP']]);
 **Python 3.8+**
 
 ```python
-import country_tiers as ct  # python/country_tiers.py, reads ../data/countries.json
+import country_tiers as ct  # run with PYTHONPATH=python; reads ../data/countries.json
 
 ct.tier_of("US")                    # 1
 ct.countries_in_tier(1)             # ['AT', 'AU', 'BE', ...]
@@ -114,7 +120,7 @@ ct.income_group("IN")               # 'Lower middle income'
 ct.geo_targets(1, exclude=["LI", "MC"], include=["JP"])
 ```
 
-If you copy only the helper file into your project, point it at your copy of the data with `load(path)` (`Tiers::load()` in PHP).
+If you copy only the helper file into your project, point it at your copy of the data with `load(path)` (`Tiers::load()` in PHP). Lookups such as `tierOf('ZZ')` return `null` (`None` in Python) for a code that does not exist.
 
 ### geoTargets
 
@@ -140,11 +146,13 @@ The tiers follow the Moonetix Academy article [Tier 1, 2 and 3 countries](https:
 
 ```mermaid
 flowchart LR
-  A[sources/tiers.json] --> B[scripts/build.mjs]
-  C[Debian iso-codes, pinned tag] --> B
-  D[World Bank API] --> B
-  E[europa.eu member list] --> B
-  B --> F[data/countries.json, .csv, tierN.txt]
+    T["sources/tiers.json<br/>named tiers, rules"] --> B["scripts/build.mjs"]
+    M["sources/memberships.json<br/>EU, EEA, territories"] --> B
+    I["Debian iso-codes<br/>pinned tag"] --> B
+    W["World Bank API<br/>income, region"] --> B
+    E["europa.eu<br/>EU member list"] -. "must match<br/>or build stops" .-> B
+    B --> D["data/<br/>countries.json, .csv,<br/>tier1-3.txt"]
+    B -. "income<br/>reclassified" .-> R["Warning: a person<br/>decides the tier"]
 ```
 
 Tiers never change automatically. When the World Bank reclassifies a country that was placed by rule, the build prints a warning and a person decides whether to move it. Tier changes are listed in the [changelog](CHANGELOG.md).
@@ -160,7 +168,7 @@ The [reference article](https://moonetix.com/academy/glossary/tier-1-2-3-countri
 
 ## Keeping it current
 
-The [refresh workflow](.github/workflows/refresh.yml) runs every Monday. It rebuilds `data/` from the upstream sources, runs all three test suites and commits only when the official data changed. The build stops instead of committing if the EU member list on europa.eu no longer matches `sources/memberships.json`, and it warns when a newer iso-codes release is out.
+The [refresh workflow](.github/workflows/refresh.yml) runs every Monday. It rebuilds `data/` from the upstream sources, runs all three test suites and commits only when the official data changed. The build stops instead of committing if the EU member list on europa.eu no longer matches `sources/memberships.json`, and it warns when a newer iso-codes release is out. Warnings and failed runs end up in one open issue labeled `automation`, which closes itself after the next clean run.
 
 To rebuild locally:
 
@@ -179,6 +187,17 @@ python3 -m unittest discover -s python -v  # Python
 ```
 
 CI runs the same three commands on every push and pull request.
+
+## Troubleshooting
+
+| Message | Cause |
+| --- | --- |
+| `RangeError: unknown country code in exclude: "XX"` | A typo in `exclude` or `include`. Fix the code; nothing is skipped silently. |
+| `RangeError: tier must be 1, 2 or 3, got 4` | `geoTargets` only takes tiers 1 to 3. |
+| `SyntaxError` on `import ... with { type: 'json' }` | Your runtime or bundler does not support JSON import attributes. Use Node 22+, or read `country-tiers/countries.json` yourself. |
+| `ModuleNotFoundError: No module named 'country_tiers'` | Python looks in the current directory. Run with `PYTHONPATH=python`, or copy the file next to your code. |
+| `error: europa.eu EU member list changed (added: ...; removed: ...)` | The build found a different EU list than `sources/memberships.json`. Check the change and update that file. |
+| `error: --offline but .../.cache/... is missing` | `--offline` needs one online run first to fill `.cache/`. |
 
 ## Sources and licenses
 
@@ -214,6 +233,6 @@ Calculators that take a per-country number once you have one: [CPI](https://moon
 
 ## About Moonetix
 
-[Moonetix](https://moonetix.com) is an affiliate network. Publishers add its offerwall to an app, game, website, bot or community, and users earn the publisher's own currency by completing offers that are available in their country. Related open data from the same team: [datacenter-ip-ranges](https://github.com/moonetix/datacenter-ip-ranges) and [awesome-app-monetization](https://github.com/moonetix/awesome-app-monetization).
+[Moonetix](https://moonetix.com) is an affiliate network. Publishers add its offerwall to an app, game, website, bot or community, and users earn the publisher's own currency by completing offers that are available in their country. Related open data and tools from the same team: [datacenter-ip-ranges](https://github.com/moonetix/datacenter-ip-ranges), [affiliate-postback-macros](https://github.com/moonetix/affiliate-postback-macros) for the postback formats of tracking platforms, [signup-guard](https://github.com/moonetix/signup-guard) and [awesome-app-monetization](https://github.com/moonetix/awesome-app-monetization).
 
-Publisher accounts: [moonetix.com/register](https://moonetix.com/register).
+Publisher accounts: [moonetix.com/register](https://moonetix.com/register?from=github-country-tiers).
