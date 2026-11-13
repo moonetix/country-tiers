@@ -25,13 +25,14 @@ async function toClipboard(text, node) {
 }
 
 function flash(button, ok) {
-  if (!button.dataset.label) button.dataset.label = button.textContent;
+  const label = button.querySelector('.copy-label') ?? button;
+  if (!button.dataset.label) button.dataset.label = label.textContent;
   const what = (button.getAttribute('aria-label') || 'Copy the text').replace(/^Copy /, '');
-  button.textContent = ok ? 'Copied' : 'Press Ctrl+C';
+  label.textContent = ok ? 'Copied' : 'Press Ctrl+C';
   button.classList.toggle('done', ok);
   clearTimeout(timers.get(button));
   timers.set(button, setTimeout(() => {
-    button.textContent = button.dataset.label;
+    label.textContent = button.dataset.label;
     button.classList.remove('done');
   }, 2000));
   if (!live) return;

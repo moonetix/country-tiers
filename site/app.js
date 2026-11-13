@@ -1,5 +1,5 @@
 const lib = await import('./js/index.js').catch(() => null);
-const { countries, lookup, countriesInTier, isEU, isEEA, incomeGroup, geoTargets } = lib ?? {};
+const { countries, lookup, tierOf, countriesInTier, isEU, isEEA, incomeGroup, geoTargets } = lib ?? {};
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, attrs = {}, ...kids) => {
@@ -87,13 +87,43 @@ function matches(r) {
   return true;
 }
 
-function renderStats() {
-  const list = $('#stats');
-  const items = [
-    `${countries.length} countries`,
-    ...[1, 2, 3].map((t) => `Tier ${t}: ${countriesInTier(t).length}`),
-  ];
-  for (const text of items) list.append(el('li', { class: 'chip', text }));
+const WELL_KNOWN = ['US', 'GB', 'DE', 'CA', 'AU', 'FR', 'JP', 'IT', 'ES', 'BR', 'KR', 'MX', 'IN', 'ID', 'PH', 'NG', 'EG', 'VN'];
+const facts = { countries: null, sources: null, updated: null };
+
+function renderFacts() {
+  const items = [];
+  if (facts.updated) items.push(`Updated ${facts.updated}`);
+  if (facts.countries) items.push(`${facts.countries} countries`);
+  if (facts.sources) items.push(`${facts.sources} sources`);
+  if (facts.updated) items.push('Checked weekly');
+  $('#stats').replaceChildren(...items.map((text) => el('li', { class: 'chip', text })));
+}
+
+function tileLabel(r) {
+  return el('span', { class: 'tl' }, el('b', { text: r.iso2 }), el('span', { class: 'tn', text: String(r.tier) }));
+}
+
+function renderHeroPreview() {
+  const box = $('#hero-preview');
+  box.textContent = '';
+  for (const t of [1, 2, 3]) {
+    const flags = el('div', { class: 'pv-flags' });
+    for (const code of WELL_KNOWN.filter((c) => tierOf(c) === t).slice(0, 5)) {
+      const r = lookup(code);
+      flags.append(
+        el('span', { class: `country t${t}` },
+          el('img', { width: '32', height: '24', alt: '', src: flagUrl(r) }),
+          tileLabel(r)),
+      );
+    }
+    box.append(
+      el('div', { class: 'pv-tier' },
+        el('p', { class: 'pv-n' },
+          el('strong', { text: String(countriesInTier(t).length) }),
+          el('span', { text: `Tier ${t}` })),
+        flags),
+    );
+  }
 }
 
 function tierWord(r) {
@@ -120,33 +150,33 @@ function renderMap() {
         el('span', { class: 'muted small', text: ` ${rows.length} countries, ${counts.map((c, i) => `T${i + 1} ${c}`).join(', ')}` }),
       ),
     );
-    const grid = el('div', { class: 'tiles' });
+    const grid = el('div', { class: 'countries' });
     for (const r of rows) {
       grid.append(
         el('button', {
           type: 'button',
-          class: `tile t${r.tier}`,
+          class: `country t${r.tier}`,
           'data-iso2': r.iso2,
           title: r.common_name,
           'aria-label': `${r.common_name}, ${tierWord(r)}`,
           tabindex: '-1',
         },
         tileFlag(r),
-        el('span', { class: 'tl' }, el('b', { text: r.iso2 }), el('span', { class: 'tn', text: String(r.tier) }))),
+        tileLabel(r)),
       );
     }
     block.append(grid);
     host.append(block);
   }
   host.addEventListener('click', (e) => {
-    const tile = e.target.closest('.tile');
+    const tile = e.target.closest('.country');
     if (tile) select(tile.dataset.iso2, true);
   });
   host.addEventListener('keydown', onTileKey);
 }
 
 function visibleTiles() {
-  return [...document.querySelectorAll('#map .tile')];
+  return [...document.querySelectorAll('#map .country')];
 }
 
 function onTileKey(e) {
@@ -198,11 +228,30 @@ function yesNo(v) {
   return v ? 'Yes' : 'No';
 }
 
+function rowSample(row, width = 58) {
+  const lines = [];
+  let line = '';
+  for (const [key, value] of Object.entries(row)) {
+    const part = `${JSON.stringify(key)}: ${JSON.stringify(value)}`;
+    if (line && line.length + part.length + 2 > width) {
+      lines.push(`${line},`);
+      line = part;
+    } else {
+      line = line ? `${line}, ${part}` : part;
+    }
+  }
+  lines.push(line);
+  return `{\n${lines.map((l) => `  ${l}`).join('\n')}\n}`;
+}
+
 function renderDetail() {
   const r = lookup(state.selected);
   const box = $('#detail');
   box.textContent = '';
   if (!r) return;
+  $('#sample-label').textContent = `One row of countries.json: ${r.common_name}`;
+  $('#sample-row').textContent = rowSample(r);
+  $('#sample').hidden = false;
   const alt = r.alt_tiers.length ? r.alt_tiers.map((t) => `Tier ${t}`).join(', ') : 'None';
   const rows = [
     ['ISO alpha-2', r.iso2],
@@ -357,8 +406,9 @@ async function renderSources() {
     const res = await fetch('data/sources.json');
     const src = await res.json();
     $('#updated').textContent = `Data last changed on ${src.updated}. A weekly workflow rebuilds it from the sources below.`;
-    $('#stats').append(el('li', { class: 'chip', text: `Updated ${src.updated}` }));
-    const list = $('#sources');
+    facts.updated = src.updated;
+    facts.sources = src.sources.length;
+    const list = $('#source-list');
     for (const s of src.sources) {
       const meta = [s.version, s.license].filter(Boolean).join(', ');
       list.append(
@@ -373,11 +423,13 @@ async function renderSources() {
   } catch {
     $('#updated').textContent = 'See data/sources.json for source versions and dates.';
   }
+  renderFacts();
 }
 
 function init() {
   parseHash();
-  renderStats();
+  facts.countries = countries.length;
+  renderHeroPreview();
   renderMap();
   renderDetail();
   for (const form of document.querySelectorAll('form')) form.addEventListener('submit', (e) => e.preventDefault());
@@ -420,5 +472,6 @@ if (lib) {
   $('#load-error').hidden = false;
   $('#explorer').hidden = true;
   $('#build').hidden = true;
+  $('#hero-preview').replaceChildren(el('p', { class: 'muted', text: 'The country data did not load.' }));
 }
 renderSources();
