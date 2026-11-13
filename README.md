@@ -209,6 +209,7 @@ The code is MIT licensed. The data keeps the licenses of its sources; [data/SOUR
 | Income group, region | [World Bank country API](https://api.worldbank.org/v2/country?format=json&per_page=400) | CC BY 4.0 |
 | EU, EEA, EU territories | [europa.eu](https://european-union.europa.eu/principles-countries-history/eu-countries_en), [Eurostat](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:European_Economic_Area_(EEA)), [European Commission](https://regions-and-cities.ec.europa.eu/policy/themes/outermost-regions) | CC BY 4.0 |
 | Tiers | [Moonetix Academy](https://moonetix.com/academy/glossary/tier-1-2-3-countries) and `sources/tiers.json` | MIT |
+| Flag images in the live demo (not part of the data) | [flag-icons](https://github.com/lipis/flag-icons), downloaded when the demo is built | MIT |
 
 If you use the dataset in research or a report, [CITATION.cff](CITATION.cff) has the citation.
 
