@@ -258,11 +258,11 @@
       <div class="tabpanel" role="tabpanel" id="panel-js" aria-labelledby="tab-js">
         <div class="code">
           <div class="code-bar"><span>Install (Node 22+)</span><button type="button" class="copy" data-copy aria-label="Copy the JavaScript install command"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="copy-label">Copy</span></button></div>
-          <pre tabindex="0"><code data-snippet="js-install">npm install github:moonetix/country-tiers</code></pre>
+          <pre tabindex="0"><code data-snippet="js-install">npm install @moonetix/country-tiers</code></pre>
         </div>
         <div class="code">
           <div class="code-bar"><span>Use</span><button type="button" class="copy" data-copy aria-label="Copy the JavaScript example"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="copy-label">Copy</span></button></div>
-          <pre tabindex="0"><code data-snippet="js-use">import { tierOf, isEU, incomeGroup, geoTargets } from 'country-tiers';
+          <pre tabindex="0"><code data-snippet="js-use">import { tierOf, isEU, incomeGroup, geoTargets } from '@moonetix/country-tiers';
 
 tierOf('US');                       <span class="c">// 1</span>
 isEU('GP', { territories: true });  <span class="c">// true</span>

@@ -4,6 +4,12 @@ Changes to the tier list, the fields and the helpers are recorded here. Weekly r
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project uses [Semantic Versioning](https://semver.org/). A tier change for any country is at least a minor version, because it changes what geo-targets built from this data include.
 
+## [1.1.0] - 2026-11-14
+
+### Changed
+
+- The JavaScript package is on npm as [`@moonetix/country-tiers`](https://www.npmjs.com/package/@moonetix/country-tiers). Its name changed from `country-tiers`, so an install from Git needs the new name in its imports. The data, the tiers and the helpers are the same as in 1.0.0.
+
 ## [1.0.0] - 2026-11-11
 
 ### Added
@@ -18,4 +24,5 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Shared test vectors in `test/vectors.json`.
 - Build script, weekly refresh workflow and CI workflow.
 
+[1.1.0]: https://github.com/moonetix/country-tiers/releases/tag/v1.1.0
 [1.0.0]: https://github.com/moonetix/country-tiers/releases/tag/v1.0.0

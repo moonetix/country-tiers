@@ -4,6 +4,7 @@
 
 [![CI](https://github.com/moonetix/country-tiers/actions/workflows/ci.yml/badge.svg)](https://github.com/moonetix/country-tiers/actions/workflows/ci.yml)
 [![Refresh](https://github.com/moonetix/country-tiers/actions/workflows/refresh.yml/badge.svg)](https://github.com/moonetix/country-tiers/actions/workflows/refresh.yml)
+[![npm](https://img.shields.io/npm/v/%40moonetix%2Fcountry-tiers?color=004ABB)](https://www.npmjs.com/package/@moonetix/country-tiers)
 [![Countries](https://img.shields.io/badge/countries-250-1f6feb.svg)](data/countries.json)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Data: see sources](https://img.shields.io/badge/data-CC%20BY%204.0%20%7C%20LGPL--2.1-6e7781.svg)](data/SOURCES.md)
@@ -78,11 +79,11 @@ The helpers read `data/countries.json` and have no dependencies. They accept alp
 **JavaScript** (Node 22+, any bundler that supports JSON import attributes)
 
 ```sh
-npm install github:moonetix/country-tiers
+npm install @moonetix/country-tiers
 ```
 
 ```js
-import { tierOf, countriesInTier, isEU, incomeGroup, geoTargets } from 'country-tiers';
+import { tierOf, countriesInTier, isEU, incomeGroup, geoTargets } from '@moonetix/country-tiers';
 
 tierOf('US');                       // 1
 countriesInTier(1);                 // ['AT', 'AU', 'BE', ...]
