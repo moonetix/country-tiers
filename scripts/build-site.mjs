@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Assembles the GitHub Pages demo in _site/ from site/, js/ and data/, and adds
-// one flag per country from the flag-icons npm package (MIT).
+// Assembles the GitHub Pages demo in _site/ from site/, js/ and data/, fills the
+// header facts in index.html from data/, and adds one flag per country from the
+// flag-icons npm package (MIT).
 // Node 22 built-ins only. Run: node scripts/build-site.mjs
 //
 // The flags are not kept in this repo. The build downloads one pinned tarball,
@@ -127,6 +128,41 @@ async function loadTarball() {
   throw new Error(`could not download ${FLAGS.tarball} (${failure.message}). Set FLAGS_TARBALL to a local copy to build offline.`);
 }
 
+// Fills the {{NAME}} placeholders in site/index.html with values read from the
+// data, so the header facts always match the files that ship with the page.
+export function pageHtml(template, countries, sources, { commit = (process.env.GITHUB_SHA || '').slice(0, 7), now = new Date() } = {}) {
+  const tiers = [1, 2, 3].map((t) => countries.filter((row) => row.tier === t).length);
+  for (const [i, n] of tiers.entries()) {
+    if (sources[`tier${i + 1}`] !== n) throw new Error(`data/sources.json says tier${i + 1} has ${sources[`tier${i + 1}`]} countries, countries.json has ${n}`);
+  }
+  if (sources.countries !== countries.length) throw new Error(`data/sources.json says ${sources.countries} countries, countries.json has ${countries.length}`);
+  const iso = sources.sources.find((s) => s.fields.includes('iso2'));
+  if (!iso) throw new Error('data/sources.json has no source for the iso2 field');
+  if (!sources.sources.some((s) => /World Bank/.test(s.name))) throw new Error('data/sources.json no longer lists a World Bank source; update the header in site/index.html');
+  const fill = {
+    COUNTRIES: countries.length,
+    CONTESTED: countries.filter((row) => row.alt_tiers.length > 0).length,
+    TIER1: tiers[0],
+    TIER2: tiers[1],
+    TIER3: tiers[2],
+    DATA_DATE: sources.updated,
+    SOURCE_COUNT: sources.sources.length,
+    ISO_SOURCE: [iso.name, iso.version].filter(Boolean).join(' '),
+    FLAGS_VERSION: FLAGS.version,
+    BUILT: now.toISOString().slice(0, 10),
+    NODE: process.version,
+    COMMIT: commit ? `<a class="mono" href="https://github.com/moonetix/country-tiers/commit/${commit}">${commit}</a>` : 'local build',
+  };
+  let html = template;
+  for (const [name, value] of Object.entries(fill)) {
+    if (value === undefined || value === null || value === '' || value === 0) throw new Error(`site/index.html: no value for {{${name}}}`);
+    html = html.replaceAll(`{{${name}}}`, String(value));
+  }
+  const left = html.match(/\{\{[A-Z0-9_]+\}\}/g);
+  if (left) throw new Error(`site/index.html: unknown placeholders ${[...new Set(left)].join(', ')}`);
+  return html;
+}
+
 async function main() {
   const out = join(root, '_site');
   const countries = JSON.parse(readFileSync(join(root, 'data', 'countries.json'), 'utf8'));
@@ -172,6 +208,7 @@ async function main() {
   writeFileSync(join(out, 'flags', 'LICENSE.txt'), license);
 
   const sources = JSON.parse(readFileSync(join(root, 'data', 'sources.json'), 'utf8'));
+  writeFileSync(join(out, 'index.html'), pageHtml(readFileSync(join(root, 'site', 'index.html'), 'utf8'), countries, sources));
   console.log(
     `Built _site/ (${sources.countries} countries, data updated ${sources.updated}, `
     + `${flags.size} flags from flag-icons ${FLAGS.version}, ${flagBytes} bytes)`,

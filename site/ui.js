@@ -30,10 +30,11 @@ function flash(button, ok) {
   const what = (button.getAttribute('aria-label') || 'Copy the text').replace(/^Copy /, '');
   label.textContent = ok ? 'Copied' : 'Press Ctrl+C';
   button.classList.toggle('done', ok);
+  button.classList.toggle('fail', !ok);
   clearTimeout(timers.get(button));
   timers.set(button, setTimeout(() => {
     label.textContent = button.dataset.label;
-    button.classList.remove('done');
+    button.classList.remove('done', 'fail');
   }, 2000));
   if (!live) return;
   live.textContent = ok ? `Copied ${what}.` : `Could not copy ${what}. It is selected, press Ctrl+C.`;
@@ -48,7 +49,7 @@ document.addEventListener('click', async (event) => {
   if (!button || button.disabled) return;
   const source = button.dataset.copy
     ? document.querySelector(button.dataset.copy)
-    : button.closest('.code')?.querySelector('code');
+    : button.closest('.snip')?.querySelector('code');
   if (!source) return;
   const text = source instanceof HTMLTextAreaElement || source instanceof HTMLInputElement ? source.value : source.textContent;
   flash(button, await toClipboard(text, source));

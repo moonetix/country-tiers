@@ -2,7 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { gzipSync } from 'node:zlib';
-import { checkIntegrity, tarEntries, flagsFromTarball } from '../scripts/build-site.mjs';
+import { readFileSync } from 'node:fs';
+import { checkIntegrity, tarEntries, flagsFromTarball, pageHtml } from '../scripts/build-site.mjs';
 
 // One ustar entry: 512-byte header, then the data padded to a multiple of 512.
 function entry(name, content, { type = '0', prefix = '' } = {}) {
@@ -72,4 +73,27 @@ test('a code listed as having no flag gets the placeholder', () => {
   const { flags } = flagsFromTarball(archive, ['DE', 'ZZ'], { integrity: sha512(archive), noFlag: new Set(['zz']) });
   assert.match(flags.get('zz').toString(), /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox="0 0 640 480">/);
   assert.equal(flags.get('de').toString(), SVG.de);
+});
+
+const countriesJson = JSON.parse(readFileSync(new URL('../data/countries.json', import.meta.url), 'utf8'));
+const sourcesJson = JSON.parse(readFileSync(new URL('../data/sources.json', import.meta.url), 'utf8'));
+const pageTemplate = readFileSync(new URL('../site/index.html', import.meta.url), 'utf8');
+
+test('the page header is filled from the data files', () => {
+  const html = pageHtml(pageTemplate, countriesJson, sourcesJson, { commit: '', now: new Date('2026-01-02T03:04:05Z') });
+  assert.doesNotMatch(html, /\{\{[A-Z0-9_]+\}\}/);
+  const tiers = [1, 2, 3].map((t) => countriesJson.filter((row) => row.tier === t).length);
+  assert.ok(html.includes(`Tier 1: ${tiers[0]}, Tier 2: ${tiers[1]}, Tier 3: ${tiers[2]}`));
+  assert.ok(html.includes(`<dd>${countriesJson.length}, `));
+  assert.ok(html.includes(`<dd>${sourcesJson.updated}, checked weekly</dd>`));
+  assert.ok(html.includes('<dd>2026-01-02, Node '));
+  assert.ok(html.includes('<dd>local build</dd>'));
+  const linked = pageHtml(pageTemplate, countriesJson, sourcesJson, { commit: 'abc1234' });
+  assert.ok(linked.includes('href="https://github.com/moonetix/country-tiers/commit/abc1234">abc1234</a>'));
+});
+
+test('a missing or unknown header value stops the build', () => {
+  assert.throws(() => pageHtml(`${pageTemplate}{{NOPE}}`, countriesJson, sourcesJson), /unknown placeholders \{\{NOPE\}\}/);
+  assert.throws(() => pageHtml(pageTemplate, countriesJson, { ...sourcesJson, updated: '' }), /no value for \{\{DATA_DATE\}\}/);
+  assert.throws(() => pageHtml(pageTemplate, countriesJson.slice(1), sourcesJson), /countries\.json has/);
 });

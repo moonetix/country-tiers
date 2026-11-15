@@ -1,5 +1,5 @@
 const lib = await import('./js/index.js').catch(() => null);
-const { countries, lookup, tierOf, countriesInTier, isEU, isEEA, incomeGroup, geoTargets } = lib ?? {};
+const { countries, lookup, isEU, isEEA, incomeGroup, geoTargets } = lib ?? {};
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, attrs = {}, ...kids) => {
@@ -87,43 +87,8 @@ function matches(r) {
   return true;
 }
 
-const WELL_KNOWN = ['US', 'GB', 'DE', 'CA', 'AU', 'FR', 'JP', 'IT', 'ES', 'BR', 'KR', 'MX', 'IN', 'ID', 'PH', 'NG', 'EG', 'VN'];
-const facts = { countries: null, sources: null, updated: null };
-
-function renderFacts() {
-  const items = [];
-  if (facts.updated) items.push(`Updated ${facts.updated}`);
-  if (facts.countries) items.push(`${facts.countries} countries`);
-  if (facts.sources) items.push(`${facts.sources} sources`);
-  if (facts.updated) items.push('Checked weekly');
-  $('#stats').replaceChildren(...items.map((text) => el('li', { class: 'chip', text })));
-}
-
 function tileLabel(r) {
   return el('span', { class: 'tl' }, el('b', { text: r.iso2 }), el('span', { class: 'tn', text: String(r.tier) }));
-}
-
-function renderHeroPreview() {
-  const box = $('#hero-preview');
-  box.textContent = '';
-  for (const t of [1, 2, 3]) {
-    const flags = el('div', { class: 'pv-flags' });
-    for (const code of WELL_KNOWN.filter((c) => tierOf(c) === t).slice(0, 5)) {
-      const r = lookup(code);
-      flags.append(
-        el('span', { class: `country t${t}` },
-          el('img', { width: '32', height: '24', alt: '', src: flagUrl(r) }),
-          tileLabel(r)),
-      );
-    }
-    box.append(
-      el('div', { class: 'pv-tier' },
-        el('p', { class: 'pv-n' },
-          el('strong', { text: String(countriesInTier(t).length) }),
-          el('span', { text: `Tier ${t}` })),
-        flags),
-    );
-  }
 }
 
 function tierWord(r) {
@@ -224,6 +189,10 @@ function updateMap() {
   }
 }
 
+function tierTag(r, short = false) {
+  return el('span', { class: 'tier-tag' }, el('i', { class: `sw t${r.tier}`, 'aria-hidden': 'true' }), short ? String(r.tier) : tierWord(r));
+}
+
 function yesNo(v) {
   return v ? 'Yes' : 'No';
 }
@@ -276,7 +245,7 @@ function renderDetail() {
       ),
     ),
     r.name !== r.common_name ? el('p', { class: 'muted small', text: r.name }) : '',
-    el('p', {}, el('span', { class: `badge t${r.tier}`, text: tierWord(r) }),
+    el('p', { class: 'detail-tier' }, tierTag(r),
       r.iso_status === 'user-assigned' ? el('span', { class: 'muted small', text: ' User-assigned code' }) : ''),
     dl,
   );
@@ -306,7 +275,7 @@ function renderTable(rows) {
         el('td', { class: 'mono', text: r.iso2 }),
         el('td', { class: 'mono', text: r.iso3 }),
         el('td', { class: 'mono', text: r.numeric ?? '-' }),
-        el('td', {}, el('span', { class: `badge t${r.tier}`, text: String(r.tier) })),
+        el('td', {}, tierTag(r, true)),
         el('td', { text: r.income_group ?? 'Not classified' }),
         el('td', { text: r.eu_member ? 'Yes' : r.eu_territory ? 'Territory' : 'No' }),
         el('td', { text: yesNo(r.eea_member) }),
@@ -406,8 +375,6 @@ async function renderSources() {
     const res = await fetch('data/sources.json');
     const src = await res.json();
     $('#updated').textContent = `Data last changed on ${src.updated}. A weekly workflow rebuilds it from the sources below.`;
-    facts.updated = src.updated;
-    facts.sources = src.sources.length;
     const list = $('#source-list');
     for (const s of src.sources) {
       const meta = [s.version, s.license].filter(Boolean).join(', ');
@@ -423,13 +390,10 @@ async function renderSources() {
   } catch {
     $('#updated').textContent = 'See data/sources.json for source versions and dates.';
   }
-  renderFacts();
 }
 
 function init() {
   parseHash();
-  facts.countries = countries.length;
-  renderHeroPreview();
   renderMap();
   renderDetail();
   for (const form of document.querySelectorAll('form')) form.addEventListener('submit', (e) => e.preventDefault());
@@ -472,6 +436,5 @@ if (lib) {
   $('#load-error').hidden = false;
   $('#explorer').hidden = true;
   $('#build').hidden = true;
-  $('#hero-preview').replaceChildren(el('p', { class: 'muted', text: 'The country data did not load.' }));
 }
 renderSources();
